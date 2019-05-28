@@ -3,11 +3,17 @@ class Api::CardsController < ApplicationController
     # list all cards in DB
     @cards = Card.all.order(created_at: :desc)
 
-    render :json => {
+    ActionCable.server.boradcast 'gamerooms_channel', {
       message: {
         cards: @cards 
       }
-    }
+    }  
+
+    # render :json => {
+    #   message: {
+    #     cards: @cards 
+    #   }
+    # }
   end
 
   def show

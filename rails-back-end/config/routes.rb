@@ -17,4 +17,5 @@ Rails.application.routes.draw do
     
     get "cards/show_hand", to: 'cards#show_hand'
   end
+  mount ActionCable.server => '/cable'
 end
